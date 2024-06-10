@@ -1,3 +1,24 @@
 npm install
 node service.js OK
 
+https://xap-mock-server-dbe-ifx-test.apps.dbcs-riga.comp.db.de/
+                                                                 
+curl -X POST https://xap-mock-server-dbe-ifx-test.apps.dbcs-riga.comp.db.de/test \
+     -H "Content-Type: application/json" \
+     -d '{"key": "value"}'
+                                         
+curl -X POST localhost:8090/test \
+     -H "Content-Type: application/json" \
+     -d '{"key": "value"}'
+
+wget --header="Content-Type: application/json" \
+     --post-data='{"key": "value"}' \
+     http://localhost:8090/test
+
+in pod 
+wget --header="Content-Type: application/json" \
+     --post-data='{"key": "value"}' \
+     http://localhost:8090/test
+
+ok in /tmp
+

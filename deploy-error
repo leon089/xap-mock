@@ -1,0 +1,45 @@
+Name:                   xap-mock-server
+Namespace:              dbe-ifx-test
+CreationTimestamp:      Mon, 10 Jun 2024 15:23:36 +0200
+Labels:                 app=xap-mock-server
+                        app.kubernetes.io/component=xap-mock-server
+                        app.kubernetes.io/instance=xap-mock-server
+                        app.kubernetes.io/name=xap-mock-server
+                        app.kubernetes.io/part-of=kube-state-metrics
+Annotations:            alpha.image.policy.openshift.io/resolve-names: *
+                        app.openshift.io/route-disabled: false
+                        app.openshift.io/vcs-ref: 
+                        app.openshift.io/vcs-uri: https://github.com/leon089/xap-mock
+                        deployment.kubernetes.io/revision: 2
+                        image.openshift.io/triggers:
+                          [{"from":{"kind":"ImageStreamTag","name":"xap-mock-server:latest","namespace":"dbe-ifx-test"},"fieldPath":"spec.template.spec.containers[?...
+                        openshift.io/generated-by: OpenShiftWebConsole
+Selector:               app=xap-mock-server
+Replicas:               1 desired | 0 updated | 0 total | 0 available | 2 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=xap-mock-server
+           deployment=xap-mock-server
+  Containers:
+   xap-mock-server:
+    Image:        image-registry.openshift-image-registry.svc:5000/dbe-ifx-test/xap-mock-server@sha256:c3d64a42208c5ee4aa5585a4d81e1660a4516a132c0cdef6cb6a14b7231d1623
+    Port:         <none>
+    Host Port:    <none>
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type             Status  Reason
+  ----             ------  ------
+  Progressing      True    NewReplicaSetCreated
+  Available        False   MinimumReplicasUnavailable
+  ReplicaFailure   True    FailedCreate
+OldReplicaSets:    xap-mock-server-7d69fd95cc (0/1 replicas created)
+NewReplicaSet:     xap-mock-server-5fbd6c8c4b (0/1 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  5m30s  deployment-controller  Scaled up replica set xap-mock-server-7d69fd95cc to 1
+  Normal  ScalingReplicaSet  5m     deployment-controller  Scaled up replica set xap-mock-server-5fbd6c8c4b to 1
