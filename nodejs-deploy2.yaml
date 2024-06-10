@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    alpha.image.policy.openshift.io/resolve-names: '*'
+    app.openshift.io/route-disabled: "false"
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/sclorg/nodejs-ex.git
+    deployment.kubernetes.io/revision: "2"
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"nodejs-sample:latest","namespace":"dbe-ifx-test"},"fieldPath":"spec.template.spec.containers[?(@.name==\"nodejs-sample\")].image","pause":"false"}]'
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2024-06-10T12:22:58Z"
+  generation: 4
+  labels:
+    app: nodejs-sample
+    app.kubernetes.io/component: nodejs-sample
+    app.kubernetes.io/instance: nodejs-sample
+    app.kubernetes.io/name: nodejs-sample
+    app.kubernetes.io/part-of: sample-app
+    app.openshift.io/runtime: nodejs
+    app.openshift.io/runtime-version: 16-ubi8
+  name: nodejs-sample
+  namespace: dbe-ifx-test
+  resourceVersion: "2984037921"
+  uid: 1a51ed30-0427-4dff-91f0-d51ca9b56201
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: nodejs-sample
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs-sample
+        deployment: nodejs-sample
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/dbe-ifx-test/nodejs-sample@sha256:90f334a576fa82f03aa8404e6c792542ec0a069016d3158598c28927fc3c20c2
+        imagePullPolicy: Always
+        name: nodejs-sample
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2024-06-10T12:22:59Z"
+    lastUpdateTime: "2024-06-10T12:22:59Z"
+    message: Created new replica set "nodejs-sample-6d98c9c5d8"
+    reason: NewReplicaSetCreated
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2024-06-10T12:22:59Z"
+    lastUpdateTime: "2024-06-10T12:22:59Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2024-06-10T12:22:59Z"
+    lastUpdateTime: "2024-06-10T12:22:59Z"
+    message: 'pods "nodejs-sample-6d98c9c5d8-m44wd" is forbidden: failed quota: default-quota:
+      must specify cpu for: nodejs-sample; memory for: nodejs-sample'
+    reason: FailedCreate
+    status: "True"
+    type: ReplicaFailure
+  observedGeneration: 4
+  unavailableReplicas: 2

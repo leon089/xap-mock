@@ -1,0 +1,2 @@
+oc login --token=sha256~iAGfKwf0zvE96fNLyP3ssJhABaAJfntJaWyJVhAmiB0 --server=https://api.dbcs-riga.comp.db.de:6443
+
